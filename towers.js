@@ -117,8 +117,10 @@ document.addEventListener('keydown', function(event) {
         Matter.Body.rotate(falling, -Math.PI / 2);
     } else if (event.key == 'ArrowDown') {
         event.preventDefault();
-        control = false;
-        Matter.Body.setVelocity(falling, {x: 0, y: falling.velocity.y * 2});
+        if (control) {
+            control = false;
+            Matter.Body.setVelocity(falling, {x: 0, y: falling.velocity.y * 2});
+        }
     } else if (event.key == 'Escape') {
         event.preventDefault();
         Matter.Composite.clear(engine.world, true);
