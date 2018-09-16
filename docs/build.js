@@ -10369,6 +10369,7 @@ var Matter = require('matter-js');
 var TILE_SIZE = 20;
 var WIDTH = 10 * TILE_SIZE;
 var HEIGHT = 30 * TILE_SIZE;
+var SPEED = 4
 
 var BLOCKS = [{
     label: 'I',
@@ -10442,7 +10443,7 @@ var previousTimestamp;
 Matter.Events.on(engine, 'beforeUpdate', function(event) {
     if (previousTimestamp && control) {
         var dt = event.timestamp - previousTimestamp;
-        var dy = dt * 0.1;
+        var dy = dt / 1000 * TILE_SIZE * SPEED;
         Matter.Body.setVelocity(falling, {x: 0, y: dy});
         Matter.Body.setPosition(falling, {
             x: falling.position.x,
@@ -10482,8 +10483,10 @@ document.addEventListener('keydown', function(event) {
         Matter.Body.rotate(falling, -Math.PI / 2);
     } else if (event.key == 'ArrowDown') {
         event.preventDefault();
-        control = false;
-        Matter.Body.setVelocity(falling, {x: 0, y: falling.velocity.y * 2});
+        if (control) {
+            control = false;
+            Matter.Body.setVelocity(falling, {x: 0, y: falling.velocity.y * 2});
+        }
     } else if (event.key == 'Escape') {
         event.preventDefault();
         Matter.Composite.clear(engine.world, true);
