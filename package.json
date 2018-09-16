@@ -1,0 +1,6 @@
+{
+  "name": "trickytowers",
+  "dependencies": {
+    "matter-js": "^0.14.2"
+  }
+}
