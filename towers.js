@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     Matter.Render.run(render);
     Matter.Runner.run(runner, engine);
 
-    render.canvas.style.background = 'linear-gradient(90deg, transparent 50%, rgba(255,255,255,.5) 50%)';
+    render.canvas.style.background = 'linear-gradient(90deg, transparent 50%, rgba(128,128,128,.1) 50%)';
     render.canvas.style.backgroundSize = TILE_SIZE * 2 + 'px';
 
     spawn();
